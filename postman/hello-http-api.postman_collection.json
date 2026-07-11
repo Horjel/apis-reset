@@ -1,0 +1,14 @@
+{
+  "info": {
+    "_postman_id": "31f29684-621a-4ff3-a397-7308330165b9",
+    "name": "APIS RESET - 01 Hello HTTP API",
+    "description": "Coleccion de Postman para la primera API del proyecto APIS RESET.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Greeting",
+      "item": []
+    }
+  ]
+}
