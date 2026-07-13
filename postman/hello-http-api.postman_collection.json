@@ -34,7 +34,7 @@
                   "",
                   "pm.test(\"Response contains the expected greeting\", function () {",
                   "    const body = pm.response.json();",
-                  "    pm.expect(body.message).to.eql(\"Welcome to APIS RESET\");",
+                  "    pm.expect(body.message).to.eql(\"Welcome Patata\");",
                   "    pm.expect(body.application).to.eql(\"hello-http-api\");",
                   "});"
                 ]

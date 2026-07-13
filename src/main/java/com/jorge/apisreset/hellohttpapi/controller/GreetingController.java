@@ -11,6 +11,6 @@ public class GreetingController {
 
     @GetMapping
     public GreetingResponse getGreeting() {
-        return new GreetingResponse("Welcome to APIS RESET", "hello-http-api");
+        return new GreetingResponse("Welcome Patata", "hello-http-api");
     }
 }
