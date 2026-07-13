@@ -16,9 +16,13 @@ public class DynamicGreetingController {
             @PathVariable("name") String name,
             @RequestParam(name = "formal", defaultValue = "false") boolean formal) {
 
-        String message = formal
-                ? "Good day, " + name + "."
-                : "Hello, " + name + "!";
+        String message;
+
+        if (formal) {
+            message = "Good day, " + name + ".";
+        } else {
+            message = "Hello, " + name + "!";
+        }
 
         return new DynamicGreetingResponse(message, name, formal);
     }
