@@ -5,7 +5,7 @@ Ultima actualizacion: 2026-07-20
 ## Estado general
 
 - APIs completadas: 2 de 30
-- API actual: 03 - Message Creator API (fase 1 completada)
+- API actual: 03 - Message Creator API (fase 2 implementada)
 - Repositorio publico: https://github.com/Horjel/apis-reset
 - Organizacion: un unico repositorio con una carpeta numerada por API
 - API 01: `01-hello-http-api`
@@ -79,16 +79,18 @@ Estado: completada y publicada dentro del repositorio principal
 
 ## API 03 - Message Creator API
 
-Estado: fase 1 completada, proyecto base creado
+Estado: fase 2 implementada, pendiente de comprobacion manual en Postman
 
 ### Fase actual
 
 - Proyecto Spring Boot creado dentro del monorepo.
-- Spring Web, DevTools y Spring Boot Test configurados.
-- Maven Wrapper preparado.
-- Prueba de arranque creada.
-- Coleccion inicial de Postman creada.
-- Pendiente: definir los objetos de entrada y respuesta y crear el endpoint POST.
+- DTO de entrada `CreateMessageRequest` creado.
+- DTO de respuesta `MessageResponse` creado.
+- Servicio con identificadores incrementales y almacenamiento en memoria creado.
+- Endpoint `POST /api/v1/messages` implementado.
+- Respuesta `201 Created` con header `Location` verificada.
+- Pruebas positivas incluidas en la coleccion de Postman.
+- Pendiente: comprobar la coleccion importada, implementar GET y anadir casos negativos.
 
 ### Conceptos previstos
 
