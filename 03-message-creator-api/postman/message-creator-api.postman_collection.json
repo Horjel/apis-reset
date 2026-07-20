@@ -1,0 +1,56 @@
+{
+  "info": {
+    "_postman_id": "9f97e183-04e8-489f-a9b4-a55976f8678f",
+    "name": "APIS RESET - 03 Message Creator API",
+    "description": "Coleccion inicial para practicar POST y request bodies JSON.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Create message - pending implementation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"author\": \"Jorge\",\n  \"content\": \"Estoy aprendiendo APIs REST\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "messages"]
+            },
+            "description": "Peticion preparada para la siguiente fase; actualmente el endpoint no existe."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

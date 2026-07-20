@@ -11,7 +11,7 @@ y ejecutables de forma independiente.
 ## Estado actual
 
 - APIs completadas: **2 de 30**
-- API en preparacion: **03 - Message Creator API**
+- API actual: **03 - Message Creator API (fase 1)**
 - Nivel actual: fundamentos de HTTP, Spring Web y Postman
 
 ## Proyectos
@@ -20,7 +20,7 @@ y ejecutables de forma independiente.
 | --- | --- | --- | --- | --- |
 | 01 | Hello HTTP API | Primer endpoint GET, JSON y codigos HTTP | Completada | [01-hello-http-api](./01-hello-http-api) |
 | 02 | Dynamic Greeting API | Path variables y query parameters | Completada | [02-dynamic-greeting-api](./02-dynamic-greeting-api) |
-| 03 | Message Creator API | POST, request body y `201 Created` | En preparacion | Pendiente |
+| 03 | Message Creator API | POST, request body y `201 Created` | Fase 1 | [03-message-creator-api](./03-message-creator-api) |
 
 ## Estructura del repositorio
 
@@ -30,7 +30,7 @@ apis-reset/
 |-- APIS_RESET_PROGRESS.md
 |-- 01-hello-http-api/
 |-- 02-dynamic-greeting-api/
-`-- 03-message-creator-api/   (proximamente)
+`-- 03-message-creator-api/
 ```
 
 Existe un unico repositorio Git para todo el itinerario. Cada carpeta numerada es
