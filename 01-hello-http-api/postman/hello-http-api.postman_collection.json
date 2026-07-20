@@ -1,0 +1,98 @@
+{
+  "info": {
+    "_postman_id": "31f29684-621a-4ff3-a397-7308330165b9",
+    "name": "APIS RESET - 01 Hello HTTP API",
+    "description": "Coleccion de Postman para la primera API del proyecto APIS RESET.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Greeting",
+      "item": [
+        {
+          "name": "Get greeting - 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type is JSON\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains the expected greeting\", function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.message).to.eql(\"Welcome Patata\");",
+                  "    pm.expect(body.application).to.eql(\"hello-http-api\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/greeting",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "greeting"]
+            },
+            "description": "Obtiene el mensaje de bienvenida. Debe responder 200 y JSON."
+          },
+          "response": []
+        },
+        {
+          "name": "Create greeting with unsupported method - 405",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 405\", function () {",
+                  "    pm.response.to.have.status(405);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/greeting",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "greeting"]
+            },
+            "description": "Caso negativo: la ruta existe, pero no admite POST. Debe responder 405."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
