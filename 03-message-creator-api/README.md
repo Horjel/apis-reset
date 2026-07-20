@@ -20,7 +20,7 @@ crear un recurso con `POST` y `201 Created`.
 - Diferencia entre `Content-Type` y `Accept`.
 - Falta de idempotencia de POST.
 
-## Requisitos funcionales previstos
+## Requisitos funcionales
 
 - Recibir el autor y el contenido de un mensaje en formato JSON.
 - Crear un identificador para el mensaje.
@@ -68,14 +68,25 @@ Accept: application/json
 Si el identificador existe, devuelve `200 OK` y el mensaje almacenado. Si no
 existe, devuelve `404 Not Found`.
 
+## Casos negativos
+
+| Caso | Codigo esperado | Motivo |
+| --- | --- | --- |
+| Body vacio | `400 Bad Request` | `@RequestBody` necesita contenido. |
+| JSON mal formado | `400 Bad Request` | Spring no puede convertirlo en Java. |
+| `Content-Type: text/plain` | `415 Unsupported Media Type` | El endpoint espera JSON. |
+| Identificador inexistente | `404 Not Found` | No existe el recurso solicitado. |
+
+Un JSON valido con campos vacios todavia se acepta porque esta API no utiliza
+Jakarta Validation. La validacion de campos se introducira en proyectos
+posteriores.
+
 ## Estado
 
-Fase 3 implementada: el endpoint POST crea mensajes y el endpoint GET permite
-consultarlos por identificador. `MessageService` devuelve
-`Optional<MessageResponse>` para representar que el mensaje puede existir o no.
+Fase 4 implementada: POST y GET funcionan, los mensajes se almacenan en memoria
+y la coleccion de Postman incluye casos positivos y negativos de HTTP.
 
-Los mensajes se guardan en memoria y desaparecen al detener la aplicacion.
-Todavia no existe validacion de campos.
+Los mensajes desaparecen al detener la aplicacion.
 
 ## Ejecutar
 
@@ -87,12 +98,11 @@ Desde esta carpeta, en PowerShell:
 
 ## Postman
 
-Importa `postman/message-creator-api.postman_collection.json`. La peticion de
-creacion guarda `messageId`, `messageAuthor` y `messageContent` como variables de
-coleccion. La siguiente peticion reutiliza esas variables para consultar el
-mensaje, y la tercera comprueba el caso `404 Not Found`.
+Importa `postman/message-creator-api.postman_collection.json`. La coleccion
+contiene seis peticiones. El POST positivo guarda `messageId`, `messageAuthor` y
+`messageContent`; el GET reutiliza esas variables.
 
 ## Siguiente fase
 
-Comprobar el flujo completo desde Postman y anadir casos negativos relacionados
-con el cuerpo JSON y el header `Content-Type`.
+Ejecutar la coleccion completa en Postman, revisar los resultados y cerrar la API
+con su evaluacion final.

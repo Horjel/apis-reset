@@ -5,7 +5,7 @@ Ultima actualizacion: 2026-07-20
 ## Estado general
 
 - APIs completadas: 2 de 30
-- API actual: 03 - Message Creator API (fase 3 implementada)
+- API actual: 03 - Message Creator API (fase 4 implementada)
 - Repositorio publico: https://github.com/Horjel/apis-reset
 - Organizacion: un unico repositorio con una carpeta numerada por API
 - API 01: `01-hello-http-api`
@@ -79,7 +79,7 @@ Estado: completada y publicada dentro del repositorio principal
 
 ## API 03 - Message Creator API
 
-Estado: fase 3 implementada, pendiente de comprobacion manual en Postman
+Estado: fase 4 implementada, pendiente de ejecutar la coleccion completa en Postman
 
 ### Fase actual
 
@@ -93,13 +93,15 @@ Estado: fase 3 implementada, pendiente de comprobacion manual en Postman
 - Respuestas `200 OK` y `404 Not Found` verificadas.
 - Uso de `Optional` para representar un resultado que puede no existir.
 - Variables de coleccion de Postman para encadenar POST y GET.
-- Pendiente: comprobar la coleccion importada y anadir casos negativos del body.
+- Casos de body vacio, JSON mal formado y media type incorrecto verificados.
+- Pendiente: ejecutar las seis peticiones en Postman y revisar sus pruebas.
 
-### Conceptos previstos
+### Conceptos aplicados
 
 - Metodo POST para crear recursos.
 - Cuerpo JSON de una peticion.
 - `@RequestBody` y conversion de JSON a Java.
-- Codigo `201 Created`.
+- Codigos `200`, `201`, `400`, `404` y `415`.
 - Diferencia entre `Content-Type` y `Accept`.
 - Falta de idempotencia de POST.
+- Variables de coleccion y encadenamiento de peticiones en Postman.
