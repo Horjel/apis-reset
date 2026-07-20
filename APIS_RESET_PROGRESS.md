@@ -6,13 +6,14 @@ Ultima actualizacion: 2026-07-20
 
 - APIs completadas: 2 de 30
 - API actual: 03 - Message Creator API (fase inicial)
-- Repositorio principal: https://github.com/Horjel/apis-reset
-- API 01 publicada: https://github.com/Horjel/apis-reset-01-hello-http-api
-- API 02 publicada: https://github.com/Horjel/apis-reset-02-dynamic-greeting-api
+- Repositorio publico: https://github.com/Horjel/apis-reset
+- Organizacion: un unico repositorio con una carpeta numerada por API
+- API 01: `01-hello-http-api`
+- API 02: `02-dynamic-greeting-api`
 
 ## API 01 - Hello HTTP API
 
-Estado: completada y publicada
+Estado: completada y publicada dentro del repositorio principal
 
 ### Conceptos aprendidos
 
@@ -49,7 +50,7 @@ Estado: completada y publicada
 
 ## API 02 - Dynamic Greeting API
 
-Estado: completada y publicada
+Estado: completada y publicada dentro del repositorio principal
 
 ### Conceptos aprendidos
 
