@@ -58,14 +58,24 @@ Content-Type: application/json
 }
 ```
 
+## Consultar un mensaje
+
+```http
+GET /api/v1/messages/{id}
+Accept: application/json
+```
+
+Si el identificador existe, devuelve `200 OK` y el mensaje almacenado. Si no
+existe, devuelve `404 Not Found`.
+
 ## Estado
 
-Fase 2 implementada: el endpoint POST convierte el JSON en
-`CreateMessageRequest`, delega la creacion en `MessageService` y devuelve un
-`MessageResponse` con `201 Created` y el header `Location`.
+Fase 3 implementada: el endpoint POST crea mensajes y el endpoint GET permite
+consultarlos por identificador. `MessageService` devuelve
+`Optional<MessageResponse>` para representar que el mensaje puede existir o no.
 
 Los mensajes se guardan en memoria y desaparecen al detener la aplicacion.
-Todavia no existe un endpoint GET ni validacion de campos.
+Todavia no existe validacion de campos.
 
 ## Ejecutar
 
@@ -78,10 +88,11 @@ Desde esta carpeta, en PowerShell:
 ## Postman
 
 Importa `postman/message-creator-api.postman_collection.json`. La peticion de
-creacion comprueba el estado `201`, el formato JSON, los valores devueltos y el
-header `Location`.
+creacion guarda `messageId`, `messageAuthor` y `messageContent` como variables de
+coleccion. La siguiente peticion reutiliza esas variables para consultar el
+mensaje, y la tercera comprueba el caso `404 Not Found`.
 
 ## Siguiente fase
 
-Comprobar el POST desde Postman, implementar la consulta por identificador y
-anadir casos negativos relevantes.
+Comprobar el flujo completo desde Postman y anadir casos negativos relacionados
+con el cuerpo JSON y el header `Content-Type`.

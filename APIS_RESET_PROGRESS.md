@@ -5,7 +5,7 @@ Ultima actualizacion: 2026-07-20
 ## Estado general
 
 - APIs completadas: 2 de 30
-- API actual: 03 - Message Creator API (fase 2 implementada)
+- API actual: 03 - Message Creator API (fase 3 implementada)
 - Repositorio publico: https://github.com/Horjel/apis-reset
 - Organizacion: un unico repositorio con una carpeta numerada por API
 - API 01: `01-hello-http-api`
@@ -79,7 +79,7 @@ Estado: completada y publicada dentro del repositorio principal
 
 ## API 03 - Message Creator API
 
-Estado: fase 2 implementada, pendiente de comprobacion manual en Postman
+Estado: fase 3 implementada, pendiente de comprobacion manual en Postman
 
 ### Fase actual
 
@@ -89,8 +89,11 @@ Estado: fase 2 implementada, pendiente de comprobacion manual en Postman
 - Servicio con identificadores incrementales y almacenamiento en memoria creado.
 - Endpoint `POST /api/v1/messages` implementado.
 - Respuesta `201 Created` con header `Location` verificada.
-- Pruebas positivas incluidas en la coleccion de Postman.
-- Pendiente: comprobar la coleccion importada, implementar GET y anadir casos negativos.
+- Endpoint `GET /api/v1/messages/{id}` implementado.
+- Respuestas `200 OK` y `404 Not Found` verificadas.
+- Uso de `Optional` para representar un resultado que puede no existir.
+- Variables de coleccion de Postman para encadenar POST y GET.
+- Pendiente: comprobar la coleccion importada y anadir casos negativos del body.
 
 ### Conceptos previstos
 

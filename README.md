@@ -11,7 +11,7 @@ y ejecutables de forma independiente.
 ## Estado actual
 
 - APIs completadas: **2 de 30**
-- API actual: **03 - Message Creator API (fase 2)**
+- API actual: **03 - Message Creator API (fase 3)**
 - Nivel actual: fundamentos de HTTP, Spring Web y Postman
 
 ## Proyectos
@@ -20,7 +20,7 @@ y ejecutables de forma independiente.
 | --- | --- | --- | --- | --- |
 | 01 | Hello HTTP API | Primer endpoint GET, JSON y codigos HTTP | Completada | [01-hello-http-api](./01-hello-http-api) |
 | 02 | Dynamic Greeting API | Path variables y query parameters | Completada | [02-dynamic-greeting-api](./02-dynamic-greeting-api) |
-| 03 | Message Creator API | POST, request body y `201 Created` | Fase 2 | [03-message-creator-api](./03-message-creator-api) |
+| 03 | Message Creator API | POST, request body y `201 Created` | Fase 3 | [03-message-creator-api](./03-message-creator-api) |
 
 ## Estructura del repositorio
 
