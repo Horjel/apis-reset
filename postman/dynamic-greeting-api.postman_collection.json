@@ -34,7 +34,7 @@
                   "",
                   "pm.test(\"Formal greeting contains expected values\", function () {",
                   "    const body = pm.response.json();",
-                  "    pm.expect(body.message).to.eql(\"Good day, Jorge.\");",
+                  "    pm.expect(body.message).to.eql(\"Buen dia, Jorge.\");",
                   "    pm.expect(body.name).to.eql(\"Jorge\");",
                   "    pm.expect(body.formal).to.eql(true);",
                   "});"
@@ -80,7 +80,7 @@
                   "",
                   "pm.test(\"Default formal value is false\", function () {",
                   "    const body = pm.response.json();",
-                  "    pm.expect(body.message).to.eql(\"Hello, Ana!\");",
+                  "    pm.expect(body.message).to.eql(\"Hola, Ana!\");",
                   "    pm.expect(body.name).to.eql(\"Ana\");",
                   "    pm.expect(body.formal).to.eql(false);",
                   "});"

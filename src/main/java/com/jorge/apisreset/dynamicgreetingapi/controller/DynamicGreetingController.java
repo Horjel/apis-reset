@@ -19,9 +19,9 @@ public class DynamicGreetingController {
         String message;
 
         if (formal) {
-            message = "Good day, " + name + ".";
+            message = "Buen dia, " + name + ".";
         } else {
-            message = "Hello, " + name + "!";
+            message = "Hola, " + name + "!";
         }
 
         return new DynamicGreetingResponse(message, name, formal);
