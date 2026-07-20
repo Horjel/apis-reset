@@ -2,13 +2,28 @@
   "info": {
     "_postman_id": "9f97e183-04e8-489f-a9b4-a55976f8678f",
     "name": "APIS RESET - 03 Message Creator API",
-    "description": "Coleccion para practicar POST y request bodies JSON.",
+    "description": "Coleccion para practicar POST, request bodies y reutilizacion de variables.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
     {
       "key": "baseUrl",
       "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "messageId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "messageAuthor",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "messageContent",
+      "value": "",
       "type": "string"
     }
   ],
@@ -24,6 +39,13 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
+                  "const responseBody = pm.response.json();",
+                  "const sentBody = JSON.parse(pm.request.body.raw);",
+                  "",
+                  "pm.collectionVariables.set(\"messageId\", responseBody.id);",
+                  "pm.collectionVariables.set(\"messageAuthor\", responseBody.author);",
+                  "pm.collectionVariables.set(\"messageContent\", responseBody.content);",
+                  "",
                   "pm.test(\"Status code is 201\", function () {",
                   "    pm.response.to.have.status(201);",
                   "});",
@@ -32,17 +54,15 @@
                   "    pm.response.to.be.json;",
                   "});",
                   "",
-                  "pm.test(\"Created message contains expected values\", function () {",
-                  "    const body = pm.response.json();",
-                  "    pm.expect(body.id).to.be.a(\"number\").and.to.be.above(0);",
-                  "    pm.expect(body.author).to.eql(\"Jorge\");",
-                  "    pm.expect(body.content).to.eql(\"Estoy aprendiendo APIs REST\");",
+                  "pm.test(\"Created message contains the values sent\", function () {",
+                  "    pm.expect(responseBody.id).to.be.a(\"number\").and.to.be.above(0);",
+                  "    pm.expect(responseBody.author).to.eql(sentBody.author);",
+                  "    pm.expect(responseBody.content).to.eql(sentBody.content);",
                   "});",
                   "",
                   "pm.test(\"Location identifies the created message\", function () {",
-                  "    const body = pm.response.json();",
                   "    pm.expect(pm.response.headers.get(\"Location\"))",
-                  "        .to.eql(\"/api/v1/messages/\" + body.id);",
+                  "        .to.eql(\"/api/v1/messages/\" + responseBody.id);",
                   "});"
                 ]
               }
@@ -76,7 +96,84 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "messages"]
             },
-            "description": "Crea un mensaje en memoria y devuelve 201 Created con el header Location."
+            "description": "Crea un mensaje y guarda su id y sus valores en variables de coleccion."
+          },
+          "response": []
+        },
+        {
+          "name": "Get created message - 200 OK",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains the stored message\", function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.id).to.eql(Number(pm.collectionVariables.get(\"messageId\")));",
+                  "    pm.expect(body.author).to.eql(pm.collectionVariables.get(\"messageAuthor\"));",
+                  "    pm.expect(body.content).to.eql(pm.collectionVariables.get(\"messageContent\"));",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/messages/{{messageId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "messages", "{{messageId}}"]
+            },
+            "description": "Consulta el mensaje creado por la peticion anterior usando messageId."
+          },
+          "response": []
+        },
+        {
+          "name": "Get missing message - 404 Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/messages/999999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "messages", "999999"]
+            },
+            "description": "Caso negativo: no existe un mensaje con ese identificador."
           },
           "response": []
         }
