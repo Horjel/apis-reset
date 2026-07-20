@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "9f97e183-04e8-489f-a9b4-a55976f8678f",
     "name": "APIS RESET - 03 Message Creator API",
-    "description": "Coleccion inicial para practicar POST y request bodies JSON.",
+    "description": "Coleccion para practicar POST y request bodies JSON.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -17,7 +17,37 @@
       "name": "Messages",
       "item": [
         {
-          "name": "Create message - pending implementation",
+          "name": "Create message - 201 Created",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Created message contains expected values\", function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.id).to.be.a(\"number\").and.to.be.above(0);",
+                  "    pm.expect(body.author).to.eql(\"Jorge\");",
+                  "    pm.expect(body.content).to.eql(\"Estoy aprendiendo APIs REST\");",
+                  "});",
+                  "",
+                  "pm.test(\"Location identifies the created message\", function () {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(pm.response.headers.get(\"Location\"))",
+                  "        .to.eql(\"/api/v1/messages/\" + body.id);",
+                  "});"
+                ]
+              }
+            }
+          ],
           "request": {
             "method": "POST",
             "header": [
@@ -46,7 +76,7 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "v1", "messages"]
             },
-            "description": "Peticion preparada para la siguiente fase; actualmente el endpoint no existe."
+            "description": "Crea un mensaje en memoria y devuelve 201 Created con el header Location."
           },
           "response": []
         }
