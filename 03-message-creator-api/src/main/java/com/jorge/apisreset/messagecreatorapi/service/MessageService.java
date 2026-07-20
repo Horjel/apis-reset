@@ -5,6 +5,7 @@ import com.jorge.apisreset.messagecreatorapi.dto.MessageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -21,5 +22,9 @@ public class MessageService {
         messages.put(id, message);
 
         return message;
+    }
+
+    public Optional<MessageResponse> findMessageById(long id) {
+        return Optional.ofNullable(messages.get(id));
     }
 }
